@@ -1,6 +1,6 @@
 function Game(player1, player2) {
-	this.player1 = Player1;
-	this.player2 = Player2;
+	this.player1 = player1;
+	this.player2 = player2;
 	this.board = new Array(9);
 	this.currentPlayer = 0;
 }
@@ -9,46 +9,29 @@ Game.prototype.play = function(){
 	debugger;
 	currentPlayer=this.currentPlayer;
 	if(currentPlayer===0){
-		randomOrder[0].placeMarker();
+		randomOrder[0].placeMarker(this);
 		currentPlayer=currentPlayer+1;
 	}
 	else{
-		randomOrder[1].placeMarker;
+		randomOrder[1].placeMarker(this);
 		currentPlayer=currentPlayer-1;
 	}
 }
 //Human Object
-function Player1(){
-	function placeMarker(){
-		var select = prompt("Select your position (1-9)");
-	//Validate number is between 1 and 9
-	if((select>=1)&&(select<=9)){
-		debugger;
-		console.log('valid input');
-		//Set the marker here by filling array
-	}
-	else
-	{
-		console.log("invalid input");
-		selectPosition();
-	}
-}
+function HumanPlayer(){
+	// Javascript equivalent to `def initialize`
 }
 //Computer Object
-function Player2(){
-	// cpuMove();
+function ComputerPlayer(){
+	// Javascript equivalent to `def initialize`
 }
 //Human select position
-Player1.prototype.placeMarker = function() {
-	
-};
-//computer select position
-Player2.prototype.placeMarker = function(){
+HumanPlayer.prototype.placeMarker = function(board) {
 	var select = prompt("Select your position (1-9)");
-	//Validate number is between 1 and 9
+	// Validate number is between 1 and 9
 	if((select>=1)&&(select<=9)){
-		console.log('valid input');
 		debugger;
+		console.log('valid input');
 		//Set the marker here by filling array
 	}
 	else
@@ -56,6 +39,11 @@ Player2.prototype.placeMarker = function(){
 		console.log("invalid input");
 		selectPosition();
 	}
+};
+//computer select position
+ComputerPlayer.prototype.placeMarker = function(board){
+	// AI logic for placing markers goes here.
+	// 
 }
 
 //check to see if board is full
@@ -72,7 +60,7 @@ Game.prototype.checkWinner = function(combo){
 
 
 //shuffle order
-var players = [Player1,Player2];
+var players = [new HumanPlayer(), new ComputerPlayer()];
 function shuffle(o){
 	for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 		return o;
